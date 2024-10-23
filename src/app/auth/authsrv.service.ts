@@ -49,8 +49,16 @@ export class AuthsrvService {
     ))
   }
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: Router) {
+    this.restoreUser()
+   }
 
+
+  logout(){
+    this.authSubject$.next(null)
+    localStorage.removeItem('data')
+    this.router.navigate(['/auth/login']);
+  }
 
   autoLogout(expDate:Date){
     const expMs = expDate.getTime() - new Date().getTime()
@@ -59,10 +67,19 @@ export class AuthsrvService {
     }, expMs)
   }
 
-  logout(){
-    this.authSubject$.next(null)
-    localStorage.removeItem('accessData')
-    this.router.navigate(['/auth/login']);
+  restoreUser(){
+    const user:string|null = localStorage.getItem('data')
+    //recupera i dati dal service
+    if(!user) return //blocca se i dati non ci sono
+    const data:iAccessData = JSON.parse(user)
+
+    if(this.jwtHelper.isTokenExpired(data.accessToken)){
+      //ora controllo se il token è scaduto, se lo è fermiamo la funzione ed eliminamo i dati scaduti dal localStorage
+      localStorage.removeItem('accessData')
+      return
+    }
+    //se nessun return viene eseguito proseguo
+    this.authSubject$.next(data)//invio i dati dell'utente al behaviorsubject
   }
 
 }
