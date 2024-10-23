@@ -7,7 +7,7 @@ import { iLoginRequest } from '../interfeces/i-login-request';
 import { iUser } from '../interfeces/iuser';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -26,6 +26,7 @@ export class AuthsrvService {
 
   register(newUser:Partial<iUser>){
     return this.http.post<iAccessData>(this.registerUrl,newUser)
+
   }
 // la chiamata post per inviare i dati dell'utente
 

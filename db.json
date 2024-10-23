@@ -1,5 +1,12 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "fegughi@gmail.com",
+      "password": "$2a$10$KJO94zO23yFUXWznf9uyS.R4Dcv8AYV6osePwMpMsZh4qEMaQjEH6",
+      "name": "Fede",
+      "id": 1
+    }
+  ],
   "products": [
     {
       "id": 1,
