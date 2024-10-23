@@ -17,8 +17,12 @@ export class LoginComponent {
 
   constructor(private authSvc : AuthsrvService, private router:Router){}
 
-   login(){
+  login(){
     this.authSvc.login(this.formData)
-   }
+    .subscribe(data =>{
+      console.log('ok')
+      this.router.navigate([''])
+    })
+  }
 
 }

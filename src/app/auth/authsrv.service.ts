@@ -7,7 +7,7 @@ import { iLoginRequest } from '../interfeces/i-login-request';
 import { iUser } from '../interfeces/iuser';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -31,6 +31,7 @@ export class AuthsrvService {
 // la chiamata post per inviare i dati dell'utente
 
   login(authData: iLoginRequest){
+    console.log(authData)
     return this.http.post<iAccessData>(this.loginUrl,authData)
     .pipe(tap(
       data => {
