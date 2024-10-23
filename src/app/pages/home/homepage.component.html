@@ -1,0 +1,17 @@
+<div class="container mt-3">
+  <div class="row header py-3">
+    <div class="col-12 col-md-6 col-lg-7">
+      <h1>Modern fornitures for minimalist lover</h1>
+      <p>Experience the ultimate relaxation with our collection of serene and tranquil spa-inspired designs.</p>
+      <app-main-button>Shop now</app-main-button>
+    </div>
+   <div class="col-12 col-md-6 col-lg-5"> <img src="https://cdn.sklum.com/it/wk/3543813/divano-componibile-angolare-sinistro-in-2-pezzi-con-pouf-triangolare-in-shearling-borjan.jpg?cf-resize=gallery" alt=""></div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let prod of prods">
+      <app-card [prod] = "prod"></app-card>
+    </div>
+  </div>
+</div>
+
